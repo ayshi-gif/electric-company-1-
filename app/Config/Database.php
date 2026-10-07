@@ -203,7 +203,7 @@ public function __construct()
         $this->default['password'] = getenv('DB_PASSWORD');
         $this->default['database'] = getenv('DB_DATABASE');
         $this->default['port']     = (int) getenv('DB_PORT');
-        $this->default['DBDebug']  = false;
+        $this->default['DBDebug'] = ENVIRONMENT !== 'production';
 
         $caFile = getenv('DB_SSL_CA');
 
