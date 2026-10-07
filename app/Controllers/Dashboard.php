@@ -85,7 +85,7 @@ class Dashboard extends Controller
 
         try {
             if ($this->customerModel->delete($account['id']) !== false) {
-                return redirect()->to(site_url('/'))->with('success', 'Customer account deleted successfully.');
+                return redirect()->to(site_url('dashboard'))->with('success', 'Customer account deleted successfully.');
             }
         } catch (DatabaseException $exception) {
             log_message('error', 'Customer account deletion failed: {message}', ['message' => $exception->getMessage()]);
