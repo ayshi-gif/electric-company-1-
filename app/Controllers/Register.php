@@ -49,16 +49,15 @@ class Register extends BaseController
             'state' => $this->request->getPost('state'),
             'zip_code' => $this->request->getPost('zip_code'),
             'password' => $this->request->getPost('password'),
-            'user_type' => 'customer',
+            'user_type' => 'admin',
             'is_active' => true,
             'email_verified' => false
         ];
         try {
             $userId = $this->userModel->insert($userData);
             if ($userId) {
-                session()->setFlashdata('success', 'Registration successful! Welcome to PowerFlow
-Electric. You can now contact us for your electrical needs.');
-                return redirect()->to('/register');
+                session()->setFlashdata('success', 'Registration successful! You can now sign in to the staff dashboard.');
+                return redirect()->to('/login');
             } else {
                 session()->setFlashdata('error', 'Registration failed. Please try again.');
                 return redirect()->back()->withInput();
