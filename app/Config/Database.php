@@ -196,23 +196,18 @@ public function __construct()
         return;
     }
 
-    // Use Aiven credentials only when Render provides them.
+       // Use Aiven credentials only when Render provides them.
     if (getenv('DB_HOST')) {
         $this->default['hostname'] = getenv('DB_HOST');
         $this->default['username'] = getenv('DB_USER');
         $this->default['password'] = getenv('DB_PASSWORD');
         $this->default['database'] = getenv('DB_DATABASE');
         $this->default['port']     = (int) getenv('DB_PORT');
-        $this->default['DBDebug'] = ENVIRONMENT !== 'production';
+        $this->default['DBDebug']  = ENVIRONMENT !== 'production';
 
-        $caFile = getenv('DB_SSL_CA');
-
-        if ($caFile) {
-            $this->default['encrypt'] = [
-                'ssl_ca'     => $caFile,
-                'ssl_verify' => true,
-            ];
-        }
+        $this->default['encrypt'] = [
+            'ssl_verify' => false,
+        ];
     }
 }
 }
